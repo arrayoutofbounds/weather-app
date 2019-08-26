@@ -5,3 +5,11 @@ const user = {
     name,
     userAge
 }
+
+const product = {
+    label: 'label'
+}
+
+const { label: productLabel } = product;
+
+console.log(productLabel);

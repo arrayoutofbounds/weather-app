@@ -6,17 +6,17 @@ const forecast = require("./utils/forecast");
 const locationToGet = process.argv[2];
 
 if(locationToGet){
-    geoCode(locationToGet.toString(), (error, data) => {
+    geoCode(locationToGet.toString(), (error, {lattitude, longtitude, location}) => {
         if (error) {
             return console.log(error);
         }
     
-        forecast(data.lattitude, data.longtitude, (error, forecastData) => {
+        forecast(lattitude, longtitude, (error, {temp, precipProbability, summary}) => {
             if (error) {
                 return console.log(error);
             }
     
-            console.log(`Location is ${data.location} is ${forecastData.temp} degrees celcius and prepcipitation is ${forecastData.precipProbability}. Overall it is ${forecastData.summary}.`);
+            console.log(`Location is ${location} is ${temp} degrees celcius and prepcipitation is ${precipProbability}. Overall it is ${summary}.`);
         })
     });
 }else{
